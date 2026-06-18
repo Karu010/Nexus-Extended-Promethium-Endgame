@@ -1,5 +1,40 @@
 -- control.lua (Endgültige Version mit Korrigierter Abbau-Logik)
 
+-- ============================================================================
+-- NEXUS WELCOME NOTIFICATION SYSTEM
+-- ============================================================================
+function show_nexus_welcome_message(player)
+    -- If the player is not valid don't do anything
+    if not player.valid then
+        return
+    end
+
+    local notified_players = storage.nexus_notified_players or {}
+    storage.nexus_notified_players = notified_players
+
+    -- If the player as already seen the message during this save, don't send it again
+    if notified_players[player.index] then
+        return
+    end
+
+    -- If the player has disabled the welcome message, don't send it again
+    if not settings.get_player_settings(player)["nexus-show-welcome-message"].value then
+        return
+    end
+
+    -- Send welcome message and mark them as notified
+    player.print({"", "[color=orange][", {"space-location-name.nexus"}, "][/color] ", {"nexus-mod.welcome-message"}})
+    storage.nexus_notified_players[player.index] = true
+end
+
+script.on_event({defines.events.on_player_joined_game}, function (event)
+    show_nexus_welcome_message(game.get_player(event.player_index))
+end)
+
+-- ============================================================================
+-- ============================================================================
+-- ============================================================================
+
 script.on_init(function()
     if remote.interfaces["space_finish_script"] then
         remote.call("space_finish_script", "set_victory_location", "sol")
@@ -8,6 +43,11 @@ end)
 script.on_configuration_changed(function()
     if remote.interfaces["space_finish_script"] then
         remote.call("space_finish_script", "set_victory_location", "sol")
+    end
+
+    -- Show nexus welcome message
+    for _, player in pairs(game.connected_players) do
+        show_nexus_welcome_message(player)
     end
 end)
 
@@ -240,50 +280,3 @@ script.on_event({
         end)
     end
 end)
-
-
-
-
-
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------
-
-
-
-
--- ============================================================================
--- NEXUS WELCOME NOTIFICATION SYSTEM
--- ============================================================================
-script.on_event({defines.events.on_player_joined_game}, function (event)
-    local player = game.get_player(event.player_index)
-
-    -- If the player is not valid don't do anything
-    if not player.valid then
-        return
-    end
-
-    local notified_players = storage.nexus_notified_players or {}
-    storage.nexus_notified_players = notified_players
-
-    -- If the player as already seen the message during this save, don't send it again
-    if notified_players[player.index] then
-        return
-    end
-
-    -- If the player has disabled the welcome message, don't send it again
-    if not settings.get_player_settings(player)["nexus-show-welcome-message"].value then
-        return
-    end
-
-    -- Send welcome message and mark them as notified
-    player.print({"nexus-mod.welcome-message"})
-    storage.nexus_notified_players[player.index] = true
-end)
-
