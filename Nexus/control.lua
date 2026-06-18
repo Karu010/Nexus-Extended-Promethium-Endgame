@@ -261,32 +261,29 @@ end)
 -- ============================================================================
 -- NEXUS WELCOME NOTIFICATION SYSTEM
 -- ============================================================================
+script.on_event({defines.on_player_joined_game}, function (event)
+    local player = game.get_player(event.player_index)
 
--- Function to display the message if the player has the setting enabled
-local function show_nexus_welcome_message(player)
-    if player then
-        -- Read the setting for this specific player
-        local is_enabled = settings.get_player_settings(player)["nexus-show-welcome-message"].value
-
-        if is_enabled == true then
-            player.print({"nexus-mod.welcome-message"})
-        end
+    -- If the player is not valid don't do anything
+    if not player.valid then
+        return
     end
-end
 
--- Check every 60 ticks (1 second) if a player needs the notification
-script.on_nth_tick(60, function(event)
+    local notified_players = storage.nexus_notified_players or {}
+    storage.nexus_notified_players = notified_players
 
-    storage.nexus_notified_players = storage.nexus_notified_players or {}
-
-    -- Loop through all currently connected players (Singleplayer and Multiplayer)
-    for _, player in pairs(game.connected_players) do
-        -- If the player is fully loaded and has not seen the message yet during this session
-        if player.valid and not storage.nexus_notified_players[player.index] then
-            show_nexus_welcome_message(player)
-            -- Mark them as notified so they only get it once per load/join
-            storage.nexus_notified_players[player.index] = true
-        end
+    -- If the player as already seen the message during this save, don't send it again
+    if notified_players[player.index] then
+        return
     end
+
+    -- If the player has disabled the welcome message, don't send it again
+    if not settings.get_player_settings(player)["nexus-show-welcome-message"].value then
+        return
+    end
+
+    -- Send welcome message and mark them as notified
+    player.print({"nexus-mod.welcome-message"})
+    storage.nexus_notified_players[player.index] = true
 end)
 
