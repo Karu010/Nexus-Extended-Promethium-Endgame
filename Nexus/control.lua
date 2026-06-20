@@ -1,5 +1,9 @@
 -- control.lua (Endgültige Version mit Korrigierter Abbau-Logik)
 
+local upgrades = require("__Nexus__.scripts.accumulator_upgrades")
+local logic = require("__Nexus__.scripts.logic")
+local gui = require("__Nexus__.scripts.gui")
+
 -- ============================================================================
 -- NEXUS WELCOME NOTIFICATION SYSTEM
 -- ============================================================================
@@ -28,7 +32,10 @@ function show_nexus_welcome_message(player)
 end
 
 script.on_event({defines.events.on_player_joined_game}, function (event)
-    show_nexus_welcome_message(game.get_player(event.player_index))
+    local player = game.get_player(event.player_index)
+    show_nexus_welcome_message(player)
+
+    gui.create_all_limits(player)
 end)
 
 -- ============================================================================
@@ -40,6 +47,7 @@ script.on_init(function()
         remote.call("space_finish_script", "set_victory_location", "sol")
     end
 end)
+
 script.on_configuration_changed(function()
     if remote.interfaces["space_finish_script"] then
         remote.call("space_finish_script", "set_victory_location", "sol")
@@ -49,12 +57,14 @@ script.on_configuration_changed(function()
     for _, player in pairs(game.connected_players) do
         show_nexus_welcome_message(player)
     end
+
+    -- Rebuild gui for everyone
+    for _, force in pairs(game.forces) do
+        gui.create_all_in_force(force, true)
+    end
 end)
 
-local logic = require("__Nexus__.scripts.logic")
-local upgrades = require("__Nexus__.scripts.accumulator_upgrades") -- Accumulator Upgrade Script
-
-local descriptions = {
+local research_description_messages = {
     ["planet-nexus-scanning-Krastorio2-space-out"] = {"nexus-research-description.planet-nexus-scanning-Krastorio2-space-out"},
     ["planet-nexus-scanning"] = {"nexus-research-description.planet-nexus-scanning"},
     ["element882"] = {"nexus-research-description.element882"},
@@ -72,75 +82,6 @@ local descriptions = {
 }
 
 -------------------------------------------------------------------------------------
--- HILFSFUNKTIONEN
--------------------------------------------------------------------------------------
-
--- Hilfsfunktion: GUI für einen Spieler aktualisieren
-local function update_limit_gui(player)
-    if not player or not player.valid then return end
--------------------------------------------------------------------------------------
-	-- NAME DEINER FORSCHUNG HIER ANPASSEN
-    local tech_name = "zero-point-energy-engine-core" 
-    local tech = player.force.technologies[tech_name]
-	
-    local top_gui = player.gui.top
-    local outer_frame = top_gui["nexus_limit_frame"]
-    
-	-- Falls nicht erforscht: GUI löschen (falls vorhanden) und abbrechen
-    if not (tech and tech.researched) then
-        if outer_frame then outer_frame.destroy() end
-        return
-    end
--------------------------------------------------------------------------------------------
-    if not outer_frame then
-        outer_frame = top_gui.add{
-            type = "frame",
-            name = "nexus_limit_frame",
-            direction = "vertical",
-            style = "frame" 
-        }
-    end
-
-    outer_frame.clear()
-
-    for entity_name, config in pairs(logic.machine_configs) do
-        local force = player.force
-        local max_allowed = logic.get_machine_limit(force, entity_name)
-        local current_count = force.get_entity_count(entity_name)
-
-        local row = outer_frame.add{
-            type = "flow", 
-            direction = "horizontal"
-        }
-        
-        row.add{
-            type = "sprite",
-            sprite = "item/" .. entity_name,
-        }
-        
-        local label = row.add{
-            type = "label",
-            caption = {"", " ", config.label, ": ", current_count, " / ", max_allowed},
-            style = "label"
-        }
-        
-        if current_count >= max_allowed then
-            label.style.font_color = {1, 0.3, 0.3}
-        else
-            label.style.font_color = {1, 1, 1}
-        end
-    end
-end
-
--- Hilfsfunktion: GUI für alle Spieler eines Teams aktualisieren
-local function update_all_in_force(force)
-    if not force or not force.valid then return end
-    for _, player in pairs(force.players) do
-        update_limit_gui(player)
-    end
-end
-
--------------------------------------------------------------------------------------
 -- EVENT-HANDLER
 -------------------------------------------------------------------------------------
 
@@ -150,31 +91,34 @@ script.on_event(defines.events.on_research_finished, function (event)
 	local force = research.force -- Variable für kürzeren Zugriff
     
     -- Anzeige der Texte
-    if descriptions[research.name] then
-        local message = descriptions[research.name]
-        for _, player in pairs(research.force.players) do
-            player.print(message)
+    local message = research_description_messages[research.name]
+    if message ~= nil then
+        for _, player in pairs(force.players) do
+            if player.valid and player.connected then
+                player.print(message)
+            end
         end
     end
 
------------------------------------------------------------------------------------------------------
--- Prüfen, ob die freischaltende Forschung oder ein Limit-Upgrade gerade fertig wurde
-    if research.name == "zero-point-energy-engine-core" or string.find(research.name, "zpe%-core%-limit%-") then
-        update_all_in_force(research.force)
+    -----------------------------------------------------------------------------------------------------
+    -- Prüfen, ob die freischaltende Forschung oder ein Limit-Upgrade gerade fertig wurde
+    local is_limit_upgrade, entity_name = logic.is_limit_upgrade(research.name)
+    if is_limit_upgrade then
+        gui.update_all_in_force(force, entity_name)
     end
------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------------
     -- NEUE LOGIK: Akkumulator Upgrade
     -----------------------------------------------------------------------------------------------------
     -- Beispiel: Wenn die Forschung "omega-accumulator-upgrade1" fertig ist
     -- Upgrade Stufe 2
-if research.name == "omega-accumulator-upgrade1" then
-    upgrades.perform_omega_upgrade(force, "omega-accumulator", "omega-accumulator-t2")
-end
+    if research.name == "omega-accumulator-upgrade1" then
+        upgrades.perform_omega_upgrade(force, "omega-accumulator", "omega-accumulator-t2")
+    end
 
-if research.name == "omega-accumulator-upgrade2" then
-    upgrades.perform_omega_upgrade(force, "omega-accumulator-t2", "omega-accumulator-t3")
-end
+    if research.name == "omega-accumulator-upgrade2" then
+        upgrades.perform_omega_upgrade(force, "omega-accumulator-t2", "omega-accumulator-t3")
+    end
 
 
 	-----------------------------------------------------------------------------------------------------
@@ -187,31 +131,39 @@ script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_e
     if not entity or not entity.valid then return end
 
     -- LOGIK 1: Das Maschinen-Limit prüfen
-    if logic.machine_configs[entity.name] then
+    if logic.has_machine_limit(entity.name) then
         local force = entity.force
         local max_allowed = logic.get_machine_limit(force, entity.name)
         local current_count = force.get_entity_count(entity.name)
 
         if current_count > max_allowed then
-            if event.player_index then
-                game.players[event.player_index].create_local_flying_text{
+            local player = event.player_index and game.players[event.player_index]
+            local refund_item = {name = entity.name, count = 1, quality = entity.quality.level}
+            local was_refunded = false
+
+            if player and player.valid then
+                player.create_local_flying_text{
                     text = {"", "Limit erreicht!"},
                     position = entity.position
                 }
+
+                was_refunded = player.can_insert(refund_item)
+                if was_refunded then player.insert(refund_item) end
+            end
+            if not was_refunded then
+                -- In case the the item could not be isnerted into the player's inventory
+                entity.surface.create_entity{
+                    name = "item-on-ground", 
+                    position = entity.position, 
+                    stack = refund_item
+                }
             end
             
-            entity.surface.create_entity{
-                name = "item-on-ground", 
-                position = entity.position, 
-                stack = {name = entity.name, count = 1}
-            }
             entity.destroy()
-            
-            update_all_in_force(force)
             return
         end
         
-        update_all_in_force(force)
+        gui.update_entity_in_force(force, entity.name, current_count, max_allowed)
     end
     
     -- LOGIK 2: Die unsichtbaren Pumpen platzieren
@@ -269,12 +221,12 @@ script.on_event({
     end
 
     -- Falls eine limitierte Maschine abgebaut wurde, GUI im NÄCHSTEN TICK aktualisieren
-    if logic.machine_configs[entity_name] then
+    if logic.has_machine_limit(entity_name) then
         -- Wir nutzen on_nth_tick für den exakt nächsten Tick, damit die Engine die Entity-Zahl bereits reduziert hat
         local tick_to_run = event.tick + 1
         script.on_nth_tick(tick_to_run, function(nth_event)
             if force and force.valid then
-                update_all_in_force(force)
+                gui.update_all_in_force(force, entity_name)
             end
             script.on_nth_tick(tick_to_run, nil) -- Handler sofort wieder entfernen
         end)
