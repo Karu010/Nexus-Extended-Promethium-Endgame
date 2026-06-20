@@ -88,7 +88,7 @@ function gui.create_entry_limit(frame, entity_name, cur, max)
 
     entity_entry = frame.add{
         type = "flow", 
-        direction = "horizontal"
+        direction = "horizontal",
         name = entity_name
     }
 
@@ -99,11 +99,11 @@ function gui.create_entry_limit(frame, entity_name, cur, max)
 
     entity_entry.add{
         type = "label",
-        name = ids.limit_label
+        name = ids.limit_label,
         --caption = {"", " ", config.label, ": ", current_count, " / ", max_allowed},
 
         -- ids.label_cur and ids.label_max need to correspond to the index of cur and max in this localised string
-        caption = {"nexus-mod.gui-machine-limit", {logic.machine_configs[entity_name].label}, cur, max}
+        caption = {"nexus-mod.gui-machine-limit", {logic.machine_configs[entity_name].label}, cur, max},
         style = "label"
     }
 
