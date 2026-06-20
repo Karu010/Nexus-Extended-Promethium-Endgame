@@ -10,7 +10,7 @@ logic.machine_configs = {
         base_limit = 1,
         tech_prefix = "zpe-core-limit-", -- Erwartet zpe-limit-1, zpe-limit-2...
         stages = 3,
-        label = "ZPE-Kerne"
+        label = {"entity-name.zero-point-energy-engine-core"}
     }--[[,
     ["zero-point-energy-engine-colling-unit-down"] = {
         base_limit = 1,
