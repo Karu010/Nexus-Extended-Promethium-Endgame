@@ -32,9 +32,26 @@ else
 	require("__Nexus__.compatibility.Fusion_Upgrade_Script.fusion_upgrade")
 end
 
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
 --<<lilys-cubeine compatibility>>--
 if mods["lilys-cubeine"] then
     ------------------------------------------------
 else
 	require("__Nexus__.compatibility.Fusion_Upgrade_Script.fusion_upgrade")
 end
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+--<<module-category-defaults compatibility>>--
+if mods["module-category-defaults"] then
+    if ModuleCategoryDefaults and ModuleCategoryDefaults.default_categories then
+        table.insert(ModuleCategoryDefaults.default_categories, "omega")
+    end
+end
+--The mod adds a category ( ModuleCategoryDefaults ), and because of that, my modules no longer work!!!! This adds it back!!!!
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
