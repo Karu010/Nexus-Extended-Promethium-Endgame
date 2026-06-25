@@ -57,12 +57,15 @@ function logic.get_machine_limit(force, entity_name)
 end
 
 function logic.get_all_machine_limits(force)
+    if not force then return end
     local limits = {}
 
     -- Compute limits for all machines with limits
     for entity_name, _ in pairs(logic.machine_configs) do
-        limits[entity_name].cur = force.get_entity_count(entity_name)
-        limits[entity_name].max = logic.get_machine_limit(force, entity_name)
+        limits[entity_name] = {
+            cur = force.get_entity_count(entity_name),
+            max = logic.get_machine_limit(force, entity_name)
+        }
     end 
 
     return limits
