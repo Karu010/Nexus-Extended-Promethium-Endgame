@@ -104,7 +104,7 @@ script.on_event(defines.events.on_research_finished, function (event)
     -- Prüfen, ob die freischaltende Forschung oder ein Limit-Upgrade gerade fertig wurde
     local is_limit_upgrade, entity_name = logic.is_limit_upgrade(research.name)
     if is_limit_upgrade then
-        gui.update_all_in_force(force, entity_name)
+        gui.update_entity_in_force(force, entity_name)
     end
     -----------------------------------------------------------------------------------------------------
     -----------------------------------------------------------------------------------------------------
@@ -138,28 +138,58 @@ script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_e
 
         if current_count > max_allowed then
             local player = event.player_index and game.players[event.player_index]
-            local refund_item = {name = entity.name, count = 1, quality = entity.quality.level}
-            local was_refunded = false
 
+            -- only the event on_built_entity has a player defined
             if player and player.valid then
                 player.create_local_flying_text{
-                    text = {"", "Limit erreicht!"},
+                    text = {"nexus-mod.floating-machine-limit"},
                     position = entity.position
                 }
-
-                was_refunded = player.can_insert(refund_item)
-                if was_refunded then player.insert(refund_item) end
+            else
+                force.print({"", "[color=yellow]", {"nexus-mod.chat-machine-limit", {"entity-name." .. entity.name}}, "[/color]"})
             end
-            if not was_refunded then
-                -- In case the the item could not be isnerted into the player's inventory
-                entity.surface.create_entity{
-                    name = "item-on-ground", 
+
+            if event.name == defines.events.on_built_entity then
+                -- event.consumed_items (LuaInventory) stores the items we have to refund
+                local consumed_items = event.consumed_items
+                if player and player.valid then
+                    -- Place the stack in the player inventory
+                    -- Remove transered items from consumed_items inventory
+                    local player_inv = player.get_main_inventory()
+                    for _, item in pairs(consumed_items.get_contents()) do
+                        if player_inv.can_insert(item) then
+                            local amount = player_inv.insert(item)
+                            log("Inserted " .. amount .. " / " .. item.count .. " " .. item.name)
+                            item.count = amount
+                            consumed_items.remove(item)
+                        end
+                    end
+                end
+
+                if not consumed_items.is_empty() then
+                    log("Spilling ")
+                    -- Drop items that couldn't be inserted on the ground
+                    entity.surface.spill_inventory{
+                        position = entity.position, 
+                        inventory = consumed_items,
+                        enable_looted  = true,
+                        allow_belts = false,
+                        force = force
+                    }
+                end
+            elseif  event.name == defines.events.on_robot_built_entity then
+                -- event.stack (LuaItemStack) stores  the items we have to refund
+                entity.surface.spill_item_stack{
                     position = entity.position, 
-                    stack = refund_item
+                    stack = event.stack,
+                    enable_looted  = true,
+                    allow_belts = false,
+                    force = force
                 }
             end
             
             entity.destroy()
+            -- No GUI update needed, the number of entities is still the same
             return
         end
         
@@ -225,9 +255,7 @@ script.on_event({
         -- Wir nutzen on_nth_tick für den exakt nächsten Tick, damit die Engine die Entity-Zahl bereits reduziert hat
         local tick_to_run = event.tick + 1
         script.on_nth_tick(tick_to_run, function(nth_event)
-            if force and force.valid then
-                gui.update_all_in_force(force, entity_name)
-            end
+            gui.update_entity_in_force(force, entity_name)
             script.on_nth_tick(tick_to_run, nil) -- Handler sofort wieder entfernen
         end)
     end

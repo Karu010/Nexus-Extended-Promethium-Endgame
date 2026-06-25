@@ -1,5 +1,6 @@
 -- We sometimes need some logic functions
 local logic = require("__Nexus__.scripts.logic")
+local util = require("__core__.lualib.util")
 
 local gui = {}
 
@@ -15,7 +16,7 @@ function gui.get_limit_frame(player, clean_build)
     local top_gui = player.gui.top
     local frame = top_gui[ids.limit_frame]
 
-    if clean_build then
+    if clean_build and frame ~= nil then
         frame.destroy()
         frame = nil
     end
@@ -57,18 +58,21 @@ function gui.update_entity_limit(player, entity_name, cur, max)
 
     -- Update existing gui elements
     local label = entity_entry[ids.limit_label]
+    local caption = util.table.deepcopy(label.caption)
 
     if cur ~= nil then
-        label[ids.label_cur] = cur
+        caption[ids.label_cur] = cur
     else
-        cur = label[ids.label_cur]
+        cur = caption[ids.label_cur]
     end
 
     if max ~= nil then
-        label[ids.label_max] = max
+        caption[ids.label_max] = max
     else
-        max = label[ids.label_max]
+        max = caption[ids.label_max]
     end
+    label.caption = caption
+
 
     -- This code part needs to be identical to the equivalent in gui.create_entry_limit (also has this comment)
     if cur >= max then
@@ -79,6 +83,7 @@ function gui.update_entity_limit(player, entity_name, cur, max)
 end
 
 function gui.create_entry_limit(frame, entity_name, cur, max)
+    if max == 0 then return end
     local entity_entry = frame[entity_name]
     
     -- If there exists a valid gui element for this element, remove it first
@@ -97,13 +102,13 @@ function gui.create_entry_limit(frame, entity_name, cur, max)
         sprite = "item/" .. entity_name,
     }
 
-    entity_entry.add{
+    local label = entity_entry.add{
         type = "label",
         name = ids.limit_label,
         --caption = {"", " ", config.label, ": ", current_count, " / ", max_allowed},
 
         -- ids.label_cur and ids.label_max need to correspond to the index of cur and max in this localised string
-        caption = {"nexus-mod.gui-machine-limit", {logic.machine_configs[entity_name].label}, cur, max},
+        caption = {"nexus-mod.gui-machine-limit", logic.machine_configs[entity_name].label, cur, max},
         style = "label"
     }
 
@@ -126,14 +131,18 @@ function gui.create_all_limits(player, limits, clean_build)
     for entity_name, limit in pairs(limits) do
         gui.create_entry_limit(frame, entity_name, limit.cur, limit.max)
     end
+
+    if #frame.children == 0 then
+        frame.destroy()
+    end
 end
 
 function gui.update_entity_in_force(force, entity_name, cur, max)
     if not force or not force.valid then return end
 
     -- Set missing values, in case of missing guis for players
-    if cur == nil then cur = player.force.get_entity_count(entity_name) end
-    if max == nil then max = logic.get_machine_limit(player.force, entity_name) end
+    if cur == nil then cur = force.get_entity_count(entity_name) end
+    if max == nil then max = logic.get_machine_limit(force, entity_name) end
 
     for _, player in pairs(force.players) do
         gui.update_entity_limit(player, entity_name, cur, max)
@@ -147,3 +156,5 @@ function gui.create_all_in_force(force, clean_build)
         gui.create_all_limits(player, limits, clean_build)
     end
 end
+
+return gui
