@@ -1,4 +1,70 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.0
+Date: 25.06.2026
+  Changes:
+    - Balance Recipe: (!!!!!!!!!!!IF ANYTHING IS UNSUITABLE OR TOO EXPENSIVE, PLEASE LET ME KNOW!!!!!!!!!!!
+	- element-882-separate = "promethium" 0.02 to 0.004 ////"platin-ore" 0.02 to 0.01 //// "gold-ore" 0.03 to 0.015
+          and increase crafting time x2
+	- "omega-alloy" = "high-energetic-photonen-fluid" input 100 to 200
+	- "platin-plate" = "molten-platin" input from 10 to 20
+	- "omega-gear" = output from 2 to 1
+	- "tempered-glass" = output from 2 to 1
+	- "gold-foil" = output from 2 to 1
+	- "platin-mesh" = output from 2 to 1
+	- "thermal-plate" = "omega-beam" input from 2 to 10 //// "gold-foil-mesh" input from 1 to 2
+	                    "organic-mesh" input from 1 to 2
+	- "omega-transformer" = "omega-beam" input from 5 to 10 /// "steel-plate" input from 10 to 100
+	- "promethium-lens" = "diamond" input from 1 to 10 /// "promethium" input from 5 to 20
+	- "electronic-memory" = "omega-beam" input from 1 to 2
+	- "advanced-microchip" = "electronic-triode" input from 1 to 80 //// "gold-wire" input from 4 to 200
+			         "processing-unit" input from 1 to 100 //// "electronic-memory" input from 1 to 100
+	- "electronic-triode" = "platin-mesh" input from 1 to 8 //// "tempered-glass" input from 2 to 20
+				"gold-wire" input from 4 to 40 //// "omega-beam" input from 1 to 10
+				"organic-mesh" input from 1 to 10
+	- "photon-sensor" = "electronic-triode" input from 5 to 20 //// "gold-wire" input from 40 to 80
+			    "thermal-plate" input from 2 to 8 //// "omega-inductor" input from 1 to 8
+			    "promethium-lens" input from 3 to 10 //// "quantum-processor" input from 4 to 100
+			    "omega-gear" input from 4 to 60 //// "omega-beam" input from 6 to 80
+	- "photon-chip" = "electronic-triode" input from 4 to 20 //// "gold-wire" input from 100 to 600
+			  "superconductor" input from 20 to 200 //// "thermal-plate" input from 1 to 10
+			  "supercapacitor" input from 8 to 200 //// "advanced-microchip" input from 10 to 100
+			  "organic-mesh" input from 8 to 20 //// "quantum-processor" input from 1 to 100
+			  "omega-beam" input from 4 to 40 //// "advanced-microchip" input from 10 to 20
+	- "photon-processor" = "tempered-glass" input from 16 to 24 //// "omega-beam" input from 2 to 60
+			       "superconductor" input from 26 to 200 //// "thermal-plate" input from 4 to 40
+			       "omega-transformer" input from 1 to 4
+	- "advanced-photon-processor" = "platin-mesh" input from 10 to 40 //// "photon-sensor" input from 4 to 16
+					"thermal-plate" input from 6 to 60 //// "platin-mesh" input from 10 to 40
+					"supercapacitor" input from 200 to 800 //// "superconductor" input from 400 to 1000
+					ADD INPUT "omega-transformer" to 10
+	- "photon-stream-thruster" = "supercapacitor" input from 20 to 200 //// "superconductor" input from 20 to 400
+				     "omega-beam" input from 8 to 100 //// "omega-gear" input from 10 to 80
+	- "fusion-reactor-mk2" = "omega-beam" input from 6 to 40 //// "quantum-processor" input from 10 to 100
+	- "fusion-generator-mk2" = "omega-gear" input from 4 to 10 //// "omega-beam" input from 1 to 24
+	- "singularity-assembler" = "omega-beam" input from 1 to 20 //// "omega-gear" input from 6 to 12
+				    "steel-plate" input from 80 to 800 //// "supercapacitor" input from 10 to 600
+				    "superconductor" input from 20 to 400
+	- "omega-substation" = "omega-gear" input from 4 to 8 //// "omega-beam" input from 2 to 20
+			       "supercapacitor" input from 10 to 100 //// "superconductor" input from 20 to 200
+	- "omega-accumulator" = "omega-alloy" input from 2 to 6 //// "omega-beam" input from 1 to 4
+				"holmium-plate" input from 10 to 20
+	- "zero-point-energy-engine-core" = "omega-alloy" input from 6 to 800 //// "omega-beam" input from 20 to 120
+	- "omega-module-mk1" = "omega-gear" input from 8 to 10 //// "gold-wire" input from 20 to 40
+	- "omega-module-mk2" = "omega-gear" input from 10 to 20 //// "omega-beam" input from 6 to 12
+			       "advanced-coil" input from 2 to 4
+	- "omega-module-mk3" = "omega-gear" input from 10 to 20 //// "omega-beam" input from 6 to 12
+			       "advanced-filter" input from 1 to 2 //// "omega-inductor" input from 1 to 2
+	- "omega-module-mk4" = "omega-gear" input from 10 to 100 //// "omega-beam" input from 6 to 120
+			       "steel-plate" input from 28 to 280 //// "gold-wire" input from 400 to 1200
+			       "thermal-plate" input from 6 to 26
+	- "omega-quality-module" = "omega-gear" input from 10 to 200 //// "omega-beam" input from 6 to 120
+				   "tempered-glass" input from 20 to 180 //// "steel-plate" input from 30 to 800
+				   "gold-wire" input from 60 to 800 //// "supercapacitor" input from 50 to 80
+				   "superconductor" input from 49 to 84 //// "gold-foil-mesh" input from 6 to 24
+
+  Bugfixes:
+    - Fix a research breaking error ( "Omega Science" in pre "Omega Science" research )
+---------------------------------------------------------------------------------------------------
 Version: 1.2.9
 Date: 24.06.2026
   Compatibility:

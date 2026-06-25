@@ -1155,16 +1155,16 @@ data:extend({
       }
     },
 	results = {
-	{type = "item", name = "promethium", probability = 0.02, amount = 1},
+	{type = "item", name = "promethium", probability = 0.004, amount = 1},
 	{type = "item", name = "iron-ore", probability = 0.07, amount = 7},
 	{type = "item", name = "copper-ore", probability = 0.02, amount = 2},
-	{type = "item", name = "stone", probability = 0.77, amount = 12},
+	{type = "item", name = "stone", probability = 0.811, amount = 12},
 	{type = "item", name = "scrap", probability = 0.02, amount = 2},
 	{type = "item", name = "copper-cable", probability = 0.05, amount = 5},
-	{type = "item", name = "platin-ore", probability = 0.02, amount = 2},
-	{type = "item", name = "gold-ore", probability = 0.03, amount = 3}
+	{type = "item", name = "platin-ore", probability = 0.01, amount = 2},
+	{type = "item", name = "gold-ore", probability = 0.015, amount = 3}
 	},
-	energy_required = 0.5,
+	energy_required = 1.0,
 --	localised_description = "-----------------",
 	category = "atomar-separator",
 	subgroup = "components",
@@ -1180,7 +1180,7 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/omega-alloy.png",
 	enabled = false,
 	ingredients = {
-		{type = "fluid", name = "high-energetic-photonen-fluid",amount = 100},
+		{type = "fluid", name = "high-energetic-photonen-fluid",amount = 200},
 		{type = "item", name = "promethium",amount = 1},
 		{type = "item", name = "holmium-plate",amount = 2},
 		{type = "item", name = "lithium",amount = 2},
@@ -1570,7 +1570,7 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/platin-plate.png",
 	enabled = false,
 	ingredients = {
-		{type = "fluid", name = "molten-platin",amount = 10}
+		{type = "fluid", name = "molten-platin",amount = 20}
 	},
 --[[
 	surface_conditions =
@@ -1874,7 +1874,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "item", name = "omega-gear", amount = 2}
+	{type = "item", name = "omega-gear", amount = 1}
 	},
 	energy_required = 6.0,
 --	localised_description = "-----------------",
@@ -1917,7 +1917,7 @@ data:extend({
 		{type = "item", name = "tungsten-plate",amount = 2}
 	},
 	results = {
-	{type = "item", name = "tempered-glass", amount = 2}
+	{type = "item", name = "tempered-glass", amount = 1}
 	},
 	energy_required = 26.0,
 --	localised_description = "-----------------",
@@ -1997,7 +1997,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "item", name = "gold-foil", amount = 2}
+	{type = "item", name = "gold-foil", amount = 1}
 	},
 	energy_required = 38.0,
 --	localised_description = "-----------------",
@@ -2073,7 +2073,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "item", name = "platin-mesh", amount = 2}
+	{type = "item", name = "platin-mesh", amount = 1}
 	},
 	energy_required = 7.5,
 --	localised_description = "-----------------",
@@ -2132,10 +2132,10 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/thermal-plate.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "gold-foil-mesh",amount = 1},
+		{type = "item", name = "gold-foil-mesh",amount = 2},
 		{type = "item", name = "gold-foil",amount = 4},
-		{type = "item", name = "omega-beam",amount = 2},
-		{type = "item", name = "organic-mesh",amount = 1}
+		{type = "item", name = "omega-beam",amount = 10},
+		{type = "item", name = "organic-mesh",amount = 2}
 	},
 	surface_conditions =
     {
@@ -2176,8 +2176,8 @@ data:extend({
 	ingredients = {
 		{type = "item", name = "gold-foil-mesh",amount = 4},
 		{type = "item", name = "omega-inductor",amount = 2},
-		{type = "item", name = "omega-beam",amount = 5},
-		{type = "item", name = "steel-plate",amount = 10}
+		{type = "item", name = "omega-beam",amount = 10},
+		{type = "item", name = "steel-plate",amount = 100}
 	},
 	surface_conditions =
     {
@@ -2217,7 +2217,7 @@ data:extend({
 	enabled = false,
 	ingredients = {
 		{type = "item", name = "tempered-glass",amount = 10},
-		{type = "item", name = "diamond",amount = 1},
+		{type = "item", name = "diamond",amount = 10},
 		{type = "item", name = "promethium",amount = 5},
 		{type = "fluid", name = "water",amount = 10000}
 	},
@@ -2240,10 +2240,10 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/advanced-microchip.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "electronic-memory",amount = 1},
-		{type = "item", name = "electronic-triode",amount = 1},
-		{type = "item", name = "gold-wire",amount = 4},
-		{type = "item", name = "processing-unit",amount = 1}
+		{type = "item", name = "electronic-memory",amount = 100},
+		{type = "item", name = "electronic-triode",amount = 80},
+		{type = "item", name = "gold-wire",amount = 200},
+		{type = "item", name = "processing-unit",amount = 100}
 	},
 	surface_conditions =
     {
@@ -2284,7 +2284,7 @@ data:extend({
 	ingredients = {
 		{type = "item", name = "organic-mesh",amount = 1},
 		{type = "item", name = "platin-mesh",amount = 1},
-		{type = "item", name = "omega-beam",amount = 1}
+		{type = "item", name = "omega-beam",amount = 2}
 	},
 	surface_conditions =
     {
@@ -2305,7 +2305,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "item", name = "electronic-memory", amount = 2}
+	{type = "item", name = "electronic-memory", amount = 1}
 	},
 	energy_required = 10.0,
 --	localised_description = "-----------------",
@@ -2323,11 +2323,11 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/electronic-triode.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "organic-mesh",amount = 1},
-		{type = "item", name = "platin-mesh",amount = 1},
-		{type = "item", name = "tempered-glass",amount = 2},
-		{type = "item", name = "gold-wire",amount = 4},
-		{type = "item", name = "omega-beam",amount = 1}
+		{type = "item", name = "organic-mesh",amount = 10},
+		{type = "item", name = "platin-mesh",amount = 8},
+		{type = "item", name = "tempered-glass",amount = 20},
+		{type = "item", name = "gold-wire",amount = 40},
+		{type = "item", name = "omega-beam",amount = 10}
 	},
 	surface_conditions =
     {
@@ -2366,14 +2366,14 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/photon-sensor.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "electronic-triode",amount = 5},
-		{type = "item", name = "gold-wire",amount = 40},
-		{type = "item", name = "thermal-plate",amount = 2},
-		{type = "item", name = "omega-inductor",amount = 1},
-		{type = "item", name = "promethium-lens",amount = 3},
-		{type = "item", name = "quantum-processor",amount = 4},
-		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 6}
+		{type = "item", name = "electronic-triode",amount = 20},
+		{type = "item", name = "gold-wire",amount = 80},
+		{type = "item", name = "thermal-plate",amount = 8},
+		{type = "item", name = "omega-inductor",amount = 8},
+		{type = "item", name = "promethium-lens",amount = 10},
+		{type = "item", name = "quantum-processor",amount = 100},
+		{type = "item", name = "omega-gear",amount = 60},
+		{type = "item", name = "omega-beam",amount = 80}
 	},
 	surface_conditions =
     {
@@ -2412,15 +2412,15 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/photon-chip.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "electronic-triode",amount = 4},
-		{type = "item", name = "gold-wire",amount = 100},
-		{type = "item", name = "superconductor",amount = 20},
-		{type = "item", name = "thermal-plate",amount = 1},
-		{type = "item", name = "supercapacitor",amount = 8},
-		{type = "item", name = "advanced-microchip",amount = 10},
-		{type = "item", name = "organic-mesh",amount = 8},
-		{type = "item", name = "quantum-processor",amount = 1},
-		{type = "item", name = "omega-beam",amount = 4}
+		{type = "item", name = "electronic-triode",amount = 20},
+		{type = "item", name = "gold-wire",amount = 600},
+		{type = "item", name = "superconductor",amount = 200},
+		{type = "item", name = "thermal-plate",amount = 10},
+		{type = "item", name = "supercapacitor",amount = 200},
+		{type = "item", name = "advanced-microchip",amount = 20},
+		{type = "item", name = "organic-mesh",amount = 20},
+		{type = "item", name = "quantum-processor",amount = 100},
+		{type = "item", name = "omega-beam",amount = 40}
 	},
 	surface_conditions =
     {
@@ -2459,15 +2459,15 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/photon-processor.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "omega-transformer",amount = 1},
+		{type = "item", name = "omega-transformer",amount = 4},
 		{type = "item", name = "gold-wire",amount = 80},
 		{type = "item", name = "gold-foil-mesh",amount = 6},
-		{type = "item", name = "thermal-plate",amount = 4},
-		{type = "item", name = "superconductor",amount = 26},
+		{type = "item", name = "thermal-plate",amount = 40},
+		{type = "item", name = "superconductor",amount = 200},
 		{type = "item", name = "photon-chip",amount = 4},
 		{type = "item", name = "graphit",amount = 60},
-		{type = "item", name = "tempered-glass",amount = 16},
-		{type = "item", name = "omega-beam",amount = 2}
+		{type = "item", name = "tempered-glass",amount = 24},
+		{type = "item", name = "omega-beam",amount = 60}
 	},
 	surface_conditions =
     {
@@ -2506,12 +2506,13 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/advanced-photon-processor.png",
 	enabled = false,
 	ingredients = {
+		{type = "item", name = "omega-transformer",amount = 10},
 		{type = "item", name = "photon-processor",amount = 4},
-		{type = "item", name = "platin-mesh",amount = 10},
-		{type = "item", name = "photon-sensor",amount = 4},
-		{type = "item", name = "thermal-plate",amount = 6},
-		{type = "item", name = "supercapacitor",amount = 200},
-		{type = "item", name = "superconductor",amount = 400},
+		{type = "item", name = "platin-mesh",amount = 40},
+		{type = "item", name = "photon-sensor",amount = 16},
+		{type = "item", name = "thermal-plate",amount = 60},
+		{type = "item", name = "supercapacitor",amount = 800},
+		{type = "item", name = "superconductor",amount = 1000},
 	},
 	surface_conditions =
     {
@@ -2997,10 +2998,10 @@ data:extend({
 		{type = "item", name = "quantum-processor",amount = 10},
 		{type = "item", name = "advanced-coil",amount = 1},
 		{type = "item", name = "gold-foil-mesh",amount = 6},
-		{type = "item", name = "supercapacitor",amount = 20},
-		{type = "item", name = "superconductor",amount = 20},
-		{type = "item", name = "omega-beam",amount = 8},
-		{type = "item", name = "omega-gear",amount = 10}
+		{type = "item", name = "supercapacitor",amount = 200},
+		{type = "item", name = "superconductor",amount = 400},
+		{type = "item", name = "omega-beam",amount = 100},
+		{type = "item", name = "omega-gear",amount = 80}
 	},
 	surface_conditions =
     {
@@ -3824,13 +3825,13 @@ data:extend({
 	ingredients = {
 	    {type = "item", name = "fusion-reactor",amount = 1},
 		{type = "item", name = "omega-gear",amount = 20},
-		{type = "item", name = "omega-beam",amount = 6},
+		{type = "item", name = "omega-beam",amount = 40},
 		{type = "item", name = "advanced-coil",amount = 10},
 		{type = "item", name = "steel-plate",amount = 600},
 		{type = "item", name = "copper-cable",amount = 200},
 		{type = "item", name = "supercapacitor", amount = 200},
 		{type = "item", name = "superconductor", amount = 100},
-		{type = "item", name = "quantum-processor", amount = 10},
+		{type = "item", name = "quantum-processor", amount = 100},
 	},
     surface_conditions =
     {
@@ -3868,8 +3869,8 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    {type = "item", name = "fusion-generator",amount = 1},
-		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 1},
+		{type = "item", name = "omega-gear",amount = 10},
+		{type = "item", name = "omega-beam",amount = 24},
 		{type = "item", name = "advanced-coil",amount = 4},
 		{type = "item", name = "steel-plate",amount = 100},
 		{type = "item", name = "copper-cable",amount = 400},
@@ -3911,13 +3912,13 @@ data:extend({
 	type = "recipe",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "omega-gear",amount = 6},
-		{type = "item", name = "omega-beam",amount = 1},
+		{type = "item", name = "omega-gear",amount = 12},
+		{type = "item", name = "omega-beam",amount = 20},
 		{type = "item", name = "advanced-coil",amount = 8},
-		{type = "item", name = "steel-plate",amount = 80},
+		{type = "item", name = "steel-plate",amount = 800},
 		{type = "item", name = "gold-wire",amount = 800},
-		{type = "item", name = "supercapacitor", amount = 10},
-		{type = "item", name = "superconductor", amount = 20},
+		{type = "item", name = "supercapacitor", amount = 600},
+		{type = "item", name = "superconductor", amount = 400},
 	},
     surface_conditions =
     {
@@ -3954,12 +3955,12 @@ data:extend({
 	type = "recipe",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 2},
+		{type = "item", name = "omega-gear",amount = 8},
+		{type = "item", name = "omega-beam",amount = 20},
 		{type = "item", name = "advanced-coil",amount = 4},
 		{type = "item", name = "steel-plate",amount = 40},
-		{type = "item", name = "supercapacitor", amount = 10},
-		{type = "item", name = "superconductor", amount = 20},
+		{type = "item", name = "supercapacitor", amount = 100},
+		{type = "item", name = "superconductor", amount = 200},
 	},
     surface_conditions =
     {
@@ -4038,11 +4039,11 @@ data:extend({
 	enabled = false,
 	ingredients = {
 		{type = "item", name = "accumulator",amount = 1},
-	    {type = "item", name = "omega-alloy",amount = 2},
+	    {type = "item", name = "omega-alloy",amount = 6},
 		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 1},
+		{type = "item", name = "omega-beam",amount = 4},
 		{type = "item", name = "steel-plate",amount = 100},
-		{type = "item", name = "holmium-plate",amount = 10},
+		{type = "item", name = "holmium-plate",amount = 20},
 	},
     surface_conditions =
     {
@@ -4080,11 +4081,11 @@ data:extend({
 	enabled = false,
 	ingredients = {
 		{type = "item", name = "accumulator",amount = 1},
-	    {type = "item", name = "omega-alloy",amount = 2},
+	    {type = "item", name = "omega-alloy",amount = 6},
 		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 1},
+		{type = "item", name = "omega-beam",amount = 4},
 		{type = "item", name = "steel-plate",amount = 100},
-		{type = "item", name = "holmium-plate",amount = 10},
+		{type = "item", name = "holmium-plate",amount = 20},
 	},
     surface_conditions =
     {
@@ -4122,11 +4123,11 @@ data:extend({
 	enabled = false,
 	ingredients = {
 		{type = "item", name = "accumulator",amount = 1},
-	    {type = "item", name = "omega-alloy",amount = 2},
+	    {type = "item", name = "omega-alloy",amount = 6},
 		{type = "item", name = "omega-gear",amount = 4},
-		{type = "item", name = "omega-beam",amount = 1},
+		{type = "item", name = "omega-beam",amount = 4},
 		{type = "item", name = "steel-plate",amount = 100},
-		{type = "item", name = "holmium-plate",amount = 10},
+		{type = "item", name = "holmium-plate",amount = 20},
 	},
     surface_conditions =
     {
@@ -4163,9 +4164,9 @@ data:extend({
 	type = "recipe",
 	enabled = false,
 	ingredients = {
-	    {type = "item", name = "omega-alloy",amount = 6},
-		{type = "item", name = "omega-gear",amount = 10},
-		{type = "item", name = "omega-beam",amount = 20},
+	    {type = "item", name = "omega-alloy",amount = 800},
+		{type = "item", name = "omega-gear",amount = 100},
+		{type = "item", name = "omega-beam",amount = 120},
 		{type = "item", name = "steel-plate",amount = 2000},
 		{type = "item", name = "holmium-plate",amount = 800},
 	},
@@ -4865,11 +4866,11 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    --{type = "item", name = "omega-module-frame",amount = 1},
-		{type = "item", name = "omega-gear",amount = 8},
+		{type = "item", name = "omega-gear",amount = 10},
 		{type = "item", name = "omega-beam",amount = 4},
 		{type = "item", name = "tempered-glass",amount = 10},
 		{type = "item", name = "steel-plate",amount = 20},
-		{type = "item", name = "gold-wire",amount = 20},
+		{type = "item", name = "gold-wire",amount = 40},
 		{type = "item", name = "supercapacitor", amount = 16},
 		{type = "item", name = "superconductor", amount = 24},
 		{type = "item", name = "gold-foil-mesh", amount = 2},
@@ -4910,14 +4911,14 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    {type = "item", name = "omega-module-mk1",amount = 3},
-		{type = "item", name = "omega-gear",amount = 10},
-		{type = "item", name = "omega-beam",amount = 6},
+		{type = "item", name = "omega-gear",amount = 20},
+		{type = "item", name = "omega-beam",amount = 16},
 		{type = "item", name = "tempered-glass",amount = 12},
 		{type = "item", name = "steel-plate",amount = 28},
 		{type = "item", name = "gold-wire",amount = 140},
 		{type = "item", name = "supercapacitor", amount = 18},
 		{type = "item", name = "superconductor", amount = 28},
-		{type = "item", name = "advanced-coil", amount = 2},
+		{type = "item", name = "advanced-coil", amount = 4},
 	},
     surface_conditions =
     {
@@ -4955,13 +4956,13 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    {type = "item", name = "omega-module-mk2",amount = 3},
-		{type = "item", name = "omega-gear",amount = 10},
-		{type = "item", name = "omega-beam",amount = 6},
+		{type = "item", name = "omega-gear",amount = 20},
+		{type = "item", name = "omega-beam",amount = 16},
 		{type = "item", name = "photon-processor",amount = 1},
 		{type = "item", name = "steel-plate",amount = 10},
 		{type = "item", name = "gold-wire",amount = 180},
-		{type = "item", name = "advanced-filter", amount = 1},
-		{type = "item", name = "omega-inductor", amount = 1},
+		{type = "item", name = "advanced-filter", amount = 2},
+		{type = "item", name = "omega-inductor", amount = 2},
 	},
     surface_conditions =
     {
@@ -4999,14 +5000,14 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    {type = "item", name = "omega-module-mk3",amount = 3},
-		{type = "item", name = "omega-gear",amount = 10},
-		{type = "item", name = "omega-beam",amount = 6},
+		{type = "item", name = "omega-gear",amount = 100},
+		{type = "item", name = "omega-beam",amount = 120},
 		{type = "item", name = "photon-sensor",amount = 4},
-		{type = "item", name = "steel-plate",amount = 28},
-		{type = "item", name = "gold-wire",amount = 400},
+		{type = "item", name = "steel-plate",amount = 280},
+		{type = "item", name = "gold-wire",amount = 1200},
 		{type = "item", name = "advanced-photon-processor", amount = 1},
 		{type = "item", name = "omega-transformer", amount = 1},
-		{type = "item", name = "thermal-plate", amount = 6},
+		{type = "item", name = "thermal-plate", amount = 26},
 	},
     surface_conditions =
     {
@@ -5044,14 +5045,14 @@ data:extend({
 	enabled = false,
 	ingredients = {
 	    --{type = "item", name = "omega-module-frame",amount = 1},
-		{type = "item", name = "omega-gear",amount = 10},
-		{type = "item", name = "omega-beam",amount = 6},
-		{type = "item", name = "tempered-glass",amount = 20},
-		{type = "item", name = "steel-plate",amount = 30},
-		{type = "item", name = "gold-wire",amount = 60},
-		{type = "item", name = "supercapacitor", amount = 40},
-		{type = "item", name = "superconductor", amount = 48},
-		{type = "item", name = "gold-foil-mesh", amount = 6},
+		{type = "item", name = "omega-gear",amount = 200},
+		{type = "item", name = "omega-beam",amount = 120},
+		{type = "item", name = "tempered-glass",amount = 180},
+		{type = "item", name = "steel-plate",amount = 800},
+		{type = "item", name = "gold-wire",amount = 800},
+		{type = "item", name = "supercapacitor", amount = 80},
+		{type = "item", name = "superconductor", amount = 84},
+		{type = "item", name = "gold-foil-mesh", amount = 24},
 	},
     surface_conditions =
     {
