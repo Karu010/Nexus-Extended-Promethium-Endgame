@@ -159,7 +159,6 @@ script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_e
                     for _, item in pairs(consumed_items.get_contents()) do
                         if player_inv.can_insert(item) then
                             local amount = player_inv.insert(item)
-                            log("Inserted " .. amount .. " / " .. item.count .. " " .. item.name)
                             item.count = amount
                             consumed_items.remove(item)
                         end
@@ -167,7 +166,6 @@ script.on_event({defines.events.on_built_entity, defines.events.on_robot_built_e
                 end
 
                 if not consumed_items.is_empty() then
-                    log("Spilling ")
                     -- Drop items that couldn't be inserted on the ground
                     entity.surface.spill_inventory{
                         position = entity.position, 
