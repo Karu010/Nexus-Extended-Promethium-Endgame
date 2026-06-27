@@ -212,8 +212,8 @@ data:extend({
 {
 	name = "omega-canister",
 	type = "item",
-	stack_size = 10,
-	weight = 100*kg,
+	stack_size = 100,
+	weight = 50*kg,
 	icon = "__Nexus-Graphics__/graphics/items/omega-canister.png",
 	icon_size = 64,
 	subgroup = "thruster",
@@ -228,8 +228,8 @@ data:extend({
 	fuel_acceleration_multiplier = 1,
     fuel_category = "photon-fuel",
 	burnt_result = "omega-canister",
-	stack_size = 10,
-	weight = 100*kg,
+	stack_size = 100,
+	weight = 50*kg,
 	icon = "__Nexus-Graphics__/graphics/items/high-energetic-photonen-fluid-canister.png",
 	icon_size = 64,
 	subgroup = "thruster",
@@ -1405,7 +1405,7 @@ data:extend({
     drop_sound = item_sounds.module_inventory_move,
     stack_size = 50,
     weight = 20 * kg,
-    effect = { consumption = 0.08, --[[quality = 0.12,--]] speed = 0.05, productivity = 0.05 }
+    effect = { consumption = 1.0, --[[quality = 0.12,--]] speed = 0.05, productivity = 0.05 }
 },
 ----------------------------------------------------------------
 {
@@ -1424,7 +1424,7 @@ data:extend({
     drop_sound = item_sounds.module_inventory_move,
     stack_size = 50,
     weight = 20 * kg,
-    effect = { consumption = 0.16, --[[quality = 0.24,--]] speed = 0.10, productivity = 0.10 }
+    effect = { consumption = 2.0, --[[quality = 0.24,--]] speed = 0.10, productivity = 0.10 }
 },
 ----------------------------------------------------------------
 {
@@ -1443,7 +1443,7 @@ data:extend({
     drop_sound = item_sounds.module_inventory_move,
     stack_size = 50,
     weight = 20 * kg,
-    effect = { consumption = 0.32, --[[quality = 0.3,--]] speed = 0.2, productivity = 0.20 }
+    effect = { consumption = 3.0, --[[quality = 0.3,--]] speed = 0.2, productivity = 0.20 }
 },
 ----------------------------------------------------------------
 {
@@ -1462,7 +1462,7 @@ data:extend({
     drop_sound = item_sounds.module_inventory_move,
     stack_size = 50,
     weight = 20 * kg,
-    effect = { consumption = 0.64, --[[quality = 0.6,--]] speed = 0.4, productivity = 0.40 }
+    effect = { consumption = 4.0, --[[quality = 0.6,--]] speed = 0.4, productivity = 0.40 }
 },
 ----------------------------------------------------------------
 {
@@ -1481,7 +1481,7 @@ data:extend({
     drop_sound = item_sounds.module_inventory_move,
     stack_size = 50,
     weight = 20 * kg,
-    effect = { consumption = 1.8, quality = 0.70, speed = 0.05 }
+    effect = { consumption = 6.0, quality = 0.70, speed = 0.05 }
 },
 
 ----------------------------------------------------------------

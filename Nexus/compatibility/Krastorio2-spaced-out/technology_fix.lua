@@ -76,6 +76,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "raw-matter-5"},
 		{type = "unlock-recipe", recipe = "raw-matter-6"},
 		{type = "unlock-recipe", recipe = "raw-matter-7"},
+		{type = "unlock-recipe", recipe = "raw-matter-8"},
 	  },
 	prerequisites = {"element882"},
 	unit =

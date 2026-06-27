@@ -338,6 +338,47 @@ data:extend({
 },
 ----------------------------------------------------------------
 {
+	name = "raw-matter-8",
+	type = "recipe",
+	icon = "__Nexus-Graphics__/graphics/items/raw-matter.png",
+    enabled = false,
+	ingredients = {
+		{type = "item", name = "uranium-ore",amount = 100},
+		{type = "fluid", name = "high-energetic-photonen-fluid", amount = 100}
+	},
+    surface_conditions =
+    {
+      {
+        property = "pressure",
+        min = 10000,
+        max = 10000
+      },
+	  {
+        property = "gravity",
+        min = 180,
+        max = 180
+      },
+      {
+        property = "magnetic-field",
+        min = 120,
+		max = 120
+      }
+    },
+	results = {
+	{type = "fluid", name = "raw-matter", amount = 100}
+	},
+	energy_required = 4,
+--	localised_description = "-----------------",
+	category = "atomacer",
+	subgroup = "fluid-drain",
+	order = "b-k",
+	--always_show_made_in = true,
+	allow_productivity = true,
+	allowed_module_categories = {"speed", "quality", "omega"},
+	allow_quality = false,
+},
+----------------------------------------------------------------
+{
 	name = "high-energetic-photonen-fluid-mk1",
 	type = "recipe",
 	icon = "__Nexus-Graphics__/graphics/items/high-energetic-photonen-fluid.png",
@@ -1570,7 +1611,7 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/platin-plate.png",
 	enabled = false,
 	ingredients = {
-		{type = "fluid", name = "molten-platin",amount = 20}
+		{type = "fluid", name = "molten-platin",amount = 10}
 	},
 --[[
 	surface_conditions =

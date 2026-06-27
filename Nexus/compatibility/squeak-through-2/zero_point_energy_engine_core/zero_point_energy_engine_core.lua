@@ -59,7 +59,7 @@ data:extend({
     energy_source =
     {
       type = "electric",
-	  usage_priority = "secondary-output"
+	  usage_priority = "primary-output"
     },
 	burns_fluid = true,
     fluid_usage_per_tick = 4,

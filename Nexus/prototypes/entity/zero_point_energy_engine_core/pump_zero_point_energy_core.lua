@@ -5,7 +5,7 @@ local sounds = require("__base__.prototypes.entity.sounds")
 local hit_effects = require("__base__.prototypes.entity.hit-effects")
 
 ----------------------------------------------------------------
--- Definition der unsichtbaren 300/s Pumpe
+-- Definition der unsichtbaren 60/s Pumpe
 ----------------------------------------------------------------
 
 local invisible_limiter_pump = {
@@ -14,15 +14,33 @@ local invisible_limiter_pump = {
     icon = "__base__/graphics/icons/pump.png", 
     icon_size = 32,
     
-    -- Flags für das Verhalten im Spiel. "not-in-build-graph" entfernt
-    flags = {"placeable-neutral", "player-creation", "not-selectable-in-game"},
+    flags = {
+		"placeable-neutral",
+		"player-creation",
+		"not-selectable-in-game",
+		"not-blueprintable",
+		"not-deconstructable",
+		"not-flammable",
+		"not-repairable"
+		},
+	resistances = {
+		{ type = "physical", decrease = 0, percent = 100 },
+		{ type = "impact",   decrease = 0, percent = 100 },
+		{ type = "fire",     decrease = 0, percent = 100 },
+		{ type = "laser",    decrease = 0, percent = 100 },
+		{ type = "poison",   decrease = 0, percent = 100 },
+		{ type = "explosion",decrease = 0, percent = 100 },
+		{ type = "acid",     decrease = 0, percent = 100 },
+		{ type = "electric", decrease = 0, percent = 100 }
+	},
 
     minable = {
         mining_time = 0.1, 
         result = "invisible-throughput-limiter-pump-item"
     },
     max_health = 10,
-    corpse = "small-remnants",
+	destructible = false,
+    corpse = nil,
 
     collision_box = {{-0.5, -0.5}, {0.5, 0.5}},
     --selection_box = {{-0.1, -0.1}, {0.1, 0.1}},
