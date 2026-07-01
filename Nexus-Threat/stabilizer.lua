@@ -42,47 +42,29 @@ function Stabilizer.safe_morph_all_stabilizers(new_tier)
             local current_recipe = old_entity.get_recipe()
             local progress = old_entity.crafting_progress
             
-            -- Save circuit wire connections safely
-            local connectors = old_entity.get_wire_connectors()
-
-            -- 1. Destruct the old entity immediately
+----------------------------------------------------------------------------------------------------
+            -- 1. Jetzt darf die alte Entity sicher zerstört werden!
             old_entity.destroy()
 
-            -- 2. Spawn the new tier precisely on the same coordinates
+            -- 2. Spawn der neuen Tier-Maschine...
             local new_entity = surface.create_entity{
                 name = "shield-stabilizer-" .. new_tier,
                 position = position,
                 force = force,
                 direction = direction,
-                raise_built = false, -- Stop recursive loops in on_built
+                raise_built = false,
                 spill = false
             }
 
             if new_entity and new_entity.valid then
                 table.insert(neue_maschinen_erstellt, {entity = new_entity, tier = new_tier})
                 
-                -- 3. Transfer recipe and progress to the new entity
                 if current_recipe then
                     new_entity.set_recipe(current_recipe.name)
                     new_entity.crafting_progress = progress
                 end
-                
-                -- Reconnect circuit network wires (red and green cables)
-                if connectors then
-                    for _, old_connector in pairs(connectors) do
-                        for _, conn in pairs(old_connector.connections) do
-                            local target = conn.target_connector
-                            if target and target.owner and target.owner.valid then
-                                local new_connector = new_entity.get_wire_connector(old_connector.wire_connector_id)
-                                if new_connector then
-                                    new_connector.connect_to(target, conn.wire_type)
-                                end
-                            end
-                        end
-                    end
-                end
 
-                -- 4. Replace the entity inside your main storage.assemblers list
+                -- Hier kommt der Block von oben hin:
                 if storage.assemblers then
                     local replaced_in_list = false
                     for idx, asm in pairs(storage.assemblers) do
@@ -97,8 +79,10 @@ function Stabilizer.safe_morph_all_stabilizers(new_tier)
                     end
                 end
             end
+----------------------------------------------------------------------------------------------------
         end
     end
+
 
     -- Clear old IDs from our independent system
     for _, id in ipairs(old_ids) do
