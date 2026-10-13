@@ -46,6 +46,12 @@ data:extend({
     minimum_value = 0
   },
   {
+    type = "bool-setting",
+    name = "nt-shield-passive-regen",	-- SHIELD REGENERATES ON ITS OWN OUTSIDE STORMS (AT "nt-shield-regen" PER SECOND)
+    setting_type = "runtime-global",
+    default_value = false
+  },
+  {
     type = "double-setting",
     name = "nt-shield-drain",		-- CHANGE DAMAGE TO THE SHIELD:
     setting_type = "runtime-global",

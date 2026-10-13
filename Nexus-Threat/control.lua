@@ -19,6 +19,7 @@ local function load_nexus_config()
     DRILL_INCREASE_RATE = settings.global["nt-drill-rate"].value,		-- CHANGE DRILL INCREASING INSTABILITY: 0.01 = 1 % alle 100 Sekunden pro Bohrer
     STORM_CHANCE_MULT = settings.global["nt-storm-chance"].value,		-- CHANGE STORM CHANCE:
     SHIELD_REGEN_RATE = settings.global["nt-shield-regen"].value,		-- CHANGE SHIELD REGENERATION AMOUNT:
+    SHIELD_PASSIVE_REGEN = settings.global["nt-shield-passive-regen"].value,	-- SHIELD REGENERATES ON ITS OWN OUTSIDE STORMS (OFF BY DEFAULT)
 
     SHIELD_DRAIN_MULT = settings.global["nt-shield-drain"].value,		-- CHANGE DAMAGE TO THE SHIELD:
     
@@ -330,6 +331,12 @@ local function update_shield()
             -- Destroyed without an event (script, deleted surface)
             Stabilizer.forget(unit_number)
         end
+    end
+
+    -- Passive regeneration (map setting, off by default): outside an active storm (no storm, or only the warning)
+    -- the shield also regenerates by "nt-shield-regen" shield energy per second, without stabilizers or power
+    if CONFIG.SHIELD_PASSIVE_REGEN and not ((storage.storm_timer or 0) > 0 and not storage.is_warning) then
+        shield = shield + CONFIG.SHIELD_REGEN_RATE * step_seconds
     end
 
     storage.shield_energy = math.min(CONFIG.MAX_SHIELD, shield)
@@ -793,6 +800,17 @@ remote.add_interface("nexus-threat", {
             error("nexus-threat.set_storm_multiplier: expected a finite number >= 0, got " .. tostring(multiplier))
         end
         storage.storm_multiplier = multiplier
+    end,
+
+    -- Adds shield energy (a negative amount takes it away), kept between 0 and the maximum shield. Returns the new
+    -- shield energy.
+    add_shield = function(amount)
+        if type(amount) ~= "number" or not (amount > -math.huge and amount < math.huge) then
+            error("nexus-threat.add_shield: expected a finite number, got " .. tostring(amount))
+        end
+        local shield = math.max(0, math.min(CONFIG.MAX_SHIELD, (storage.shield_energy or 0) + amount))
+        storage.shield_energy = shield
+        return shield
     end,
 
     -- Snapshot of the threat state. Reads only, so it is safe to call at any time.
