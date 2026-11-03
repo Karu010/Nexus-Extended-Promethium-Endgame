@@ -3,6 +3,19 @@
 --Limiter pumps of the zero-point energy engine core for every quality (after other mods added theirs)
 require("prototypes.entity.zero_point_energy_engine_core.pump_qualities")
 
+--The zero-point energy engine needs gravity: control.lua applies its limit and places its limiter pumps on
+--on_built_entity and on_robot_built_entity, and a space platform raises neither (after other mods changed the entities)
+for _, entity in pairs({
+    data.raw["generator"]["zero-point-energy-engine-core"],
+    data.raw["assembling-machine"]["zero-point-energy-engine-injector-up"],
+    data.raw["assembling-machine"]["zero-point-energy-engine-injector-down"],
+    data.raw["assembling-machine"]["zero-point-energy-engine-injector-left"],
+    data.raw["assembling-machine"]["zero-point-energy-engine-injector-right"],
+}) do
+    entity.surface_conditions = entity.surface_conditions or {}
+    table.insert(entity.surface_conditions, {property = "gravity", min = 0.1})
+end
+
 
 
 

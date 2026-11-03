@@ -40,6 +40,16 @@ script.on_event({defines.events.on_player_joined_game}, function (event)
     gui.create_all_limits(player)
 end)
 
+script.on_event(defines.events.on_player_cursor_stack_changed, function (event)
+    gui.update_limit_frame_visibility(game.get_player(event.player_index))
+end)
+
+script.on_event(defines.events.on_runtime_mod_setting_changed, function (event)
+    if event.player_index and gui.is_limit_frame_setting(event.setting) then
+        gui.update_limit_frame_visibility(game.get_player(event.player_index))
+    end
+end)
+
 -- ============================================================================
 -- ============================================================================
 -- ============================================================================

@@ -12,6 +12,33 @@ local ids = {
     label_max = 4,
 }
 
+local frame_setting = "nexus-limit-frame-in-hand-only"
+
+-- A ghost in the cursor reads as { name = LuaItemPrototype, quality = LuaQualityPrototype }.
+-- The stack in the cursor takes priority over the ghost; a spectator has no cursor stack at all.
+local function holds_limited_machine(player)
+    local stack = player.cursor_stack
+    if stack and stack.valid_for_read then
+        return logic.has_machine_limit(stack.name)
+    end
+
+    local ghost = player.cursor_ghost
+    return ghost ~= nil and logic.has_machine_limit(ghost.name.name)
+end
+
+-- With the setting on, the limit frame shows only while the player holds a limited machine or its ghost
+function gui.update_limit_frame_visibility(player)
+    if not player or not player.valid then return end
+    local frame = player.gui.top[ids.limit_frame]
+    if not frame or not frame.valid then return end
+
+    frame.visible = not player.mod_settings[frame_setting].value or holds_limited_machine(player)
+end
+
+function gui.is_limit_frame_setting(setting_name)
+    return setting_name == frame_setting
+end
+
 function gui.get_limit_frame(player, clean_build)
     local top_gui = player.gui.top
     local frame = top_gui[ids.limit_frame]
@@ -23,12 +50,14 @@ function gui.get_limit_frame(player, clean_build)
 
     if frame ~= nil and frame.valid then return frame end
 
-    return top_gui.add{
+    frame = top_gui.add{
         type = "frame",
         name = ids.limit_frame,
         direction = "vertical",
         style = "frame" 
     }
+    gui.update_limit_frame_visibility(player)
+    return frame
 end
 
 -- Update the entity limit for a given player and entity name
