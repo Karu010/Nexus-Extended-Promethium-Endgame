@@ -46,7 +46,9 @@ local invisible_limiter_pump = {
     collision_box = {{-0.5, -0.5}, {0.5, 0.5}},
     --selection_box = {{-0.1, -0.1}, {0.1, 0.1}},
     
-    pumping_speed = 1,
+    -- 40/s. A fluid box of volume 1 would pass less whenever the injector output is not almost full, and the power of
+    -- the core would swing with every craft of the injector.
+    pumping_speed = 2 / 3,
 
 energy_source =
     {
@@ -59,7 +61,7 @@ energy_source =
     -- Fluid-Boxen definieren (1x1 Entität, Input/Output jetzt zentriert)
     fluid_box = {
         base_area = 1,
-        volume = 1, 
+        volume = 10,
         pipe_connections = {
             { 
                 position = {0, 0}, 

@@ -233,7 +233,7 @@ end)
 
 -- WARP DRIVE: the engines of a platform work only on the way to or from the Oort cloud and Sol (scripts/warp_drive.lua)
 script.on_event(defines.events.on_space_platform_changed_state, function(event)
-    warp_drive.update_platform(event.platform)
+    warp_drive.on_state_changed(event)
 end)
 
 script.on_event(defines.events.on_space_platform_built_entity, function(event)
