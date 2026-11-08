@@ -37,12 +37,23 @@ function warp_drive.update_platform(platform)
     if not (platform and platform.valid and platform.surface) then return end
 
     local connection = platform.space_connection
-    local allowed = connection and (WARP_LOCATIONS[connection.from.name] or WARP_LOCATIONS[connection.to.name]) or false
+    
+    -- GEÄNDERT: "and" statt "or" sperrt den Warp-Drive für Nexus
+    local is_warp_route = connection and (WARP_LOCATIONS[connection.from.name] and WARP_LOCATIONS[connection.to.name]) or false
+    
+    -- GEÄNDERT: Warp-Drive darf nur laufen, wenn die Plattform wirklich fliegt (on_the_path)
+    local is_moving = platform.state == defines.space_platform_state.on_the_path
+    local allowed = is_warp_route and is_moving
+
     local engines = platform.surface.find_entities_filtered({name = ENGINE})
     for _, engine in pairs(engines) do
-        engine.disabled_by_script = not allowed
+        if engine.valid then
+            engine.disabled_by_script = not allowed
+        end
     end
-    if connection and not allowed and #engines > 0 then
+    
+    -- GEÄNDERT: Bremse zündet nur, wenn man auf einer normalen Route wirklich zu schnell fliegt (Verhindert den Start-Crash)
+    if connection and not is_warp_route and #engines > 0 and platform.speed > MAX_ORDINARY_SPEED then
         leave_warp_speed(platform)
     end
 end

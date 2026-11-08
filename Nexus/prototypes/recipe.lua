@@ -1029,7 +1029,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "fluid", name = "zero-point-energy",amount = 60}
+	{type = "fluid", name = "zero-point-energy",amount = 40}
 	},
 	energy_required = 1,
 --	localised_description = "-----------------",
@@ -1069,7 +1069,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "fluid", name = "zero-point-energy",amount = 60}
+	{type = "fluid", name = "zero-point-energy",amount = 40}
 	},
 	energy_required = 1,
 --	localised_description = "-----------------",
@@ -1109,7 +1109,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "fluid", name = "zero-point-energy",amount = 60}
+	{type = "fluid", name = "zero-point-energy",amount = 40}
 	},
 	energy_required = 1,
 --	localised_description = "-----------------",
@@ -1149,7 +1149,7 @@ data:extend({
       }
     },
 	results = {
-	{type = "fluid", name = "zero-point-energy",amount = 60}
+	{type = "fluid", name = "zero-point-energy",amount = 40}
 	},
 	energy_required = 1,
 --	localised_description = "-----------------",
