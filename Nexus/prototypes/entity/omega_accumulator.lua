@@ -182,6 +182,7 @@ data.raw["accumulator"]["accumulator"].next_upgrade = "omega-accumulator"
 -------------------------------------------------------------------
 local accumulator_t2 = table.deepcopy(data.raw["accumulator"]["omega-accumulator"])
 accumulator_t2.name = "omega-accumulator-t2"
+accumulator_t2.minable.result = "omega-accumulator-t2"
 accumulator_t2.energy_source.buffer_capacity = "250MJ"
 accumulator_t2.energy_source.input_flow_limit = "15MW"
 accumulator_t2.energy_source.output_flow_limit = "15MW"
@@ -198,6 +199,7 @@ data.raw["accumulator"]["omega-accumulator"].next_upgrade = "omega-accumulator-t
 -------------------------------------------------------------------
 local accumulator_t3 = table.deepcopy(data.raw["accumulator"]["omega-accumulator"])
 accumulator_t3.name = "omega-accumulator-t3"
+accumulator_t3.minable.result = "omega-accumulator-t3"
 accumulator_t3.energy_source.buffer_capacity = "500MJ"
 accumulator_t3.energy_source.input_flow_limit = "30MW"
 accumulator_t3.energy_source.output_flow_limit = "30MW"

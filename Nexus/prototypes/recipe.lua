@@ -1705,7 +1705,7 @@ data:extend({
 	results = {
 	{type = "item", name = "diamond", amount = 1}
 	},
-	energy_required = 65.0,
+	energy_required = 18.0,
 --	localised_description = "-----------------",
 	categories = {"atomar-assembler"},
 	subgroup = "components",
@@ -2029,7 +2029,7 @@ data:extend({
 	results = {
 	{type = "item", name = "gold-foil", amount = 1}
 	},
-	energy_required = 38.0,
+	energy_required = 16.0,
 --	localised_description = "-----------------",
 	categories = {"roller-factory"},
 	subgroup = "components",
@@ -2163,7 +2163,7 @@ data:extend({
 	ingredients = {
 		{type = "item", name = "gold-foil-mesh",amount = 2},
 		{type = "item", name = "gold-foil",amount = 4},
-		{type = "item", name = "omega-beam",amount = 10},
+		{type = "item", name = "omega-beam",amount = 2},
 		{type = "item", name = "organic-mesh",amount = 2}
 	},
 	surface_conditions =
@@ -2269,10 +2269,10 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/advanced-microchip.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "electronic-memory",amount = 100},
-		{type = "item", name = "electronic-triode",amount = 80},
-		{type = "item", name = "gold-wire",amount = 200},
-		{type = "item", name = "processing-unit",amount = 100}
+		{type = "item", name = "electronic-memory",amount = 25},
+		{type = "item", name = "electronic-triode",amount = 8},
+		{type = "item", name = "gold-wire",amount = 20},
+		{type = "item", name = "processing-unit",amount = 40}
 	},
 	surface_conditions =
     {
@@ -2313,7 +2313,7 @@ data:extend({
 	ingredients = {
 		{type = "item", name = "organic-mesh",amount = 1},
 		{type = "item", name = "platin-mesh",amount = 1},
-		{type = "item", name = "omega-beam",amount = 2}
+		{type = "item", name = "omega-beam",amount = 1}
 	},
 	surface_conditions =
     {
@@ -2352,11 +2352,11 @@ data:extend({
     icon = "__Nexus-Graphics__/graphics/items/electronic-triode.png",
 	enabled = false,
 	ingredients = {
-		{type = "item", name = "organic-mesh",amount = 10},
-		{type = "item", name = "platin-mesh",amount = 8},
-		{type = "item", name = "tempered-glass",amount = 20},
-		{type = "item", name = "gold-wire",amount = 40},
-		{type = "item", name = "omega-beam",amount = 10}
+		{type = "item", name = "organic-mesh",amount = 2},
+		{type = "item", name = "platin-mesh",amount = 1},
+		{type = "item", name = "tempered-glass",amount = 2},
+		{type = "item", name = "gold-wire",amount = 6},
+		{type = "item", name = "omega-beam",amount = 1}
 	},
 	surface_conditions =
     {
@@ -2402,7 +2402,7 @@ data:extend({
 		{type = "item", name = "promethium-lens",amount = 10},
 		{type = "item", name = "quantum-processor",amount = 100},
 		{type = "item", name = "omega-gear",amount = 60},
-		{type = "item", name = "omega-beam",amount = 80}
+		{type = "item", name = "omega-beam",amount = 40}
 	},
 	surface_conditions =
     {
@@ -2668,8 +2668,8 @@ data:extend({
 	enabled = false,
 	ingredients = {
 		{type = "item", name = "high-energy-crystal",amount = 1},
-		{type = "fluid", name = "high-energetic-photonen-fluid",amount = 100},
-		{type = "fluid", name = "photonen-energy-fluid",amount = 100},
+		{type = "fluid", name = "high-energetic-photonen-fluid",amount = 200},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 200},
 	},
 	surface_conditions =
     {
@@ -2708,8 +2708,8 @@ data:extend({
 	icon = "__Nexus-Graphics__/graphics/items/singularity-crystal-core-412.png",
 	enabled = false,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 60},
-		{type = "fluid", name = "raw-matter",amount = 1000},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 100},
+		{type = "fluid", name = "raw-matter",amount = 4000},
 	},
 	surface_conditions =
     {
@@ -2754,7 +2754,7 @@ data:extend({
 	allow_inserter_overload = false,
 	overload_multiplier = 0,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 40},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 80},
 		{type = "item", name = "singularity-crystal-core-13",amount = 1},
 	},
 	surface_conditions =
@@ -2797,7 +2797,7 @@ data:extend({
 	allow_inserter_overload = false,
 	overload_multiplier = 0,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 40},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 80},
 		{type = "item", name = "singularity-crystal-core-65",amount = 1},
 	},
 	surface_conditions =
@@ -2840,7 +2840,7 @@ data:extend({
 	allow_inserter_overload = false,
 	overload_multiplier = 0,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 40},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 80},
 		{type = "item", name = "singularity-crystal-core-119",amount = 1},
 	},
 	surface_conditions =
@@ -2883,7 +2883,7 @@ data:extend({
 	allow_inserter_overload = false,
 	overload_multiplier = 0,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 40},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 80},
 		{type = "item", name = "singularity-crystal-core-313",amount = 1},
 	},
 	surface_conditions =
@@ -2924,7 +2924,7 @@ data:extend({
 	icon = "__Nexus-Graphics__/graphics/items/high-energy-crystal.png",
 	enabled = false,
 	ingredients = {
-		{type = "fluid", name = "photonen-energy-fluid",amount = 10},
+		{type = "fluid", name = "photonen-energy-fluid",amount = 100},
 		{type = "item", name = "gold-ore",amount = 1},
 		{type = "item", name = "platin-ore",amount = 1},
 		{type = "item", name = "singularity-crystal-core-13",amount = 1},

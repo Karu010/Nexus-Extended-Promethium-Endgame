@@ -1,19 +1,31 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.8
+Date: 10.11.2026
+  Changes:
+    -  "singularity-crystals-stage-1" = "raw-matter" input 1000 to 2000
+    -   Massive balancing adjustment in the “photon-electronics” area!!!! Factory layouts remained unchanged / only recipe costs were adjusted!!!!
+  Bugfixes:
+    - "Omega Accumulator" only returned Level 1 when dismantled.
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 Version: 1.3.7
 Date: 08.11.2026
   Update:
     - !!!!!!!! Bugfixing from "Deadpoolweid" !!!!!!!! ( Github )
 
-    - Platforms: control.lua applies the core limit and places the limiter pumps on on_built_entity and on_robot_built_entity, and a space platform raises
-      neither.A core on a platform had no limit and no pumps. The core and the four injectors now need gravity >= 0.1, so they cannot be placed on platforms.
+    - Platforms: control.lua applies the core limit and places the limiter pumps on on_built_entity and on_robot_built_entity,
+      and a space platform raises neither. 
+      A core on a platform had no limit and no pumps. The core and the four injectors now need gravity >= 0.1,
+      so they cannot be placed on platforms.
     - Limit frame: new player setting "Machine limit only in hand", off by default.
-      When it is on, the frame at the top of the screen shows only while the player holds a ZPE core or its ghost. With the setting off nothing changes.
-      Strings in en, de, ru, uk.
+      When it is on, the frame at the top of the screen shows only while the player holds a ZPE core or its ghost.
+      With the setting off nothing changes. Strings in en, de, ru, uk.
     - Normal core power: the limiter pump with a fluid box of volume 1 followed the injector output level,
-      so at full load the core swung between 202 and 240 GW with every injector craft. The normal pump now has volume 10 and pumping_speed 2/3,
-      and gives a flat 240 GW. The old core values swung the same way.
-    - Warp speed on ordinary routes: a platform going from the Oort cloud to Fulgora through Nexus kept its warp speed on the ordinary route
-      with the engines off, and the game froze. It now goes on from the start of that route at 10 km per tick at most.
+      so at full load the core swung between 202 and 240 GW with every injector craft.
+      The normal pump now has volume 10 and pumping_speed 2/3, and gives a flat 240 GW. The old core values swung the same way.
+    - Warp speed on ordinary routes: a platform going from the Oort cloud to Fulgora through Nexus
+      kept its warp speed on the ordinary route with the engines off, and the game froze.
+      It now goes on from the start of that route at 10 km per tick at most.
     - Departure loop: a platform whose only fueled thrusters were locked warp engines tried to leave every tick and fell back.
       It is now paused with a chat message (en, de, ru, uk).
 
@@ -33,9 +45,11 @@ Date: 02.11.2026
       The engines are now off while parked and come on once the platform is on its way.
       This also fixes leaving for the Oort cloud from a standstill.
     - New map setting "Passive shield regeneration" (nt-shield-passive-regen, off).
-      When it is on, outside an active storm the shield regenerates by "Shield regeneration" (nt-shield-regen, 0.75 per second) without stabilizers or power.
+      When it is on, outside an active storm the shield regenerates by "Shield regeneration" (nt-shield-regen, 0.75 per second)
+      without stabilizers or power.
     - Remote function nexus-threat.add_shield(amount): adds shield energy (a negative amount takes it away),
-      keeps the shield between 0 and the maximum and returns the new value. For add-ons, for example a boss whose death restores the shield.
+      keeps the shield between 0 and the maximum and returns the new value.
+      For add-ons, for example a boss whose death restores the shield.
 
   Changes:
     - "omega-beam" recipe cost change from "tungsten-plate" 10 to 1
