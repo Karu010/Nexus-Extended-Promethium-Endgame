@@ -1,9 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.3.9
+Version: 1.4.0
 Date: 11.11.2026
   Bugfixes:
     - Fix Parser Error in changelog.
-    - Fix "Failed to load mods: Circular dependencies detected" with "nexus-bosses".
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.8
 Date: 10.11.2026

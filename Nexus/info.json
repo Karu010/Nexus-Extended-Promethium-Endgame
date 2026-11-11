@@ -1,6 +1,6 @@
 {
   "name": "Nexus",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "title": "Nexus Extended Promethium Endgame",
   "author": "Karu_Kiruna",
   "dependencies": [
@@ -9,7 +9,7 @@
   "Nexus-Graphics >= 0.0.9",
   "Nexus-Threat >= 1.0.8",
   "? plasma-duct",
-  "~ nexus-bosses"
+  "? nexus-bosses"
   ],
   "space_travel_required": true,
   "description": "Expands the Promethium Endgame and adds another planet with new production steps and ressources.",
