@@ -1,3 +1,8 @@
+-- Paracelsin defines this planet itself, and its own version is newer: 1.11.0 renamed water-cryovolcano to
+-- cryovolcanic-vent, 1.13.0 renamed vaterite to calcium-crystals. When Paracelsin loads before Nexus, the copy below
+-- would replace it and the game would stop on an unknown entity, so it is only used when the planet does not exist yet.
+if data.raw.planet and data.raw.planet["paracelsin"] then return end
+
 require("__space-age__/prototypes/planet/planet-vulcanus-map-gen")
 local planet_map_gen = require("__space-age__/prototypes/planet/planet-map-gen")
 
