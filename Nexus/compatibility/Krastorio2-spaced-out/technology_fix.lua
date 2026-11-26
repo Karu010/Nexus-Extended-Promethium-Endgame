@@ -138,7 +138,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "omega-alloy"},
 		{type = "unlock-recipe", recipe = "atomar-assembler"},
 	  },
-	prerequisites = {"diamond-processing"},
+	prerequisites = {"nexus-diamond-processing"},
 	unit =
     {
       count = 1400,
@@ -175,7 +175,7 @@ data:extend({
 		{type = "unlock-recipe", recipe = "silica-rich-sand"},
 		{type = "unlock-recipe", recipe = "tempered-glass"},
 	  },
-	prerequisites = {"diamond-processing"},
+	prerequisites = {"nexus-diamond-processing"},
 	unit =
     {
       count = 1400,
@@ -249,7 +249,7 @@ data:extend({
 },
 ----------------------------------------------------------------
 {
-	name = "diamond-processing",
+	name = "nexus-diamond-processing",
 	type = "technology",
 	icon = "__Nexus-Graphics__/graphics/tech/diamond-processing.png",
 	icon_size = 1024,
